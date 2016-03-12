@@ -9,9 +9,9 @@ class Images extends REST_Controller {
     }
 
     function upload_post($id = NULL) {
-        $size = intval($_FILES["image"]["size"]);
+        print_r($_FILES);
 
-        $this->response(["files" => ["$size"]], REST_Controller::HTTP_OK);
+        $this->response(["files" => []], REST_Controller::HTTP_OK);
     }
 
 }
