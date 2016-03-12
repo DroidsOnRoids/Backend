@@ -44,7 +44,7 @@ class Images extends REST_Controller {
         foreach ($files_unfiltered as $files_array) {
             $path = $files_array['path'];
             foreach ($files_array['files'] as $file) {
-                $file = $path.'/'.$file;
+                $file = $path.$file;
                 if (is_file($file)) {
                     $files[] = base_url().substr($file, 2);
                 }
