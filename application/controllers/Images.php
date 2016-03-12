@@ -43,16 +43,13 @@ class Images extends REST_Controller {
         }
         foreach ($files_unfiltered as $files_array) {
             $path = $files_array['path'];
-            echo "Path: $path <br />";
             foreach ($files_array['files'] as $file) {
                 $file = $path.'/'.$file;
-                echo "File: $file <br />";
                 if (is_file($file)) {
                     $files[] = $file;
                 }
             }
         }
-        print_r($files);
 
         $this->response(["images" => $files], REST_Controller::HTTP_OK);
     }
