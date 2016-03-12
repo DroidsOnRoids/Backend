@@ -18,11 +18,18 @@ class Images extends REST_Controller {
 
     private function getPathForUser($userId = NULL) {
         $userId = intval($userId);
+        $path = '';
         if ($userId > 0) {
-            return str_replace("{ID}", $userId, Images::PATH_USER_FILES);
+            $path = str_replace("{ID}", $userId, Images::PATH_USER_FILES);
         } else {
-            return Images::PATH_ALL_FILES;
+            $path = Images::PATH_ALL_FILES;
         }
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        return $path;
     }
 
     function get_get($id = NULL) {
