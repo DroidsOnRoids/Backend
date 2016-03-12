@@ -7,16 +7,34 @@ class ImagesResponse {
     const ERROR_NO_FILE_SENT = "No file sent.";
     const ERROR_INVALID_FILE_FORMAT = "Invalid file format.";
     const ERROR_UNKNOWN = "Unknown error.";
+    const ERROR_FAILED_TO_UPLOAD = "Failed to move uploaded file.";
     const SUCCESS_IMAGE_UPLOADED = "Image uploaded correctly.";
 }
 
 class Images extends REST_Controller {
 
+    const PATH_ALL_FILES = "./images/all/";
+    const PATH_USER_FILES = "./images/user_{ID}/";
+
+    private function getPathForUser($userId = NULL) {
+        $userId = intval($userId);
+        if ($userId > 0) {
+            return str_replace("{ID}", $userId, Images::PATH_USER_FILES);
+        } else {
+            return Images::PATH_ALL_FILES;
+        }
+    }
+
     function get_get($id = NULL) {
+        $files_all = scandir($this->getPathForUser());
+        print_r($files_all);
+
         $this->response(["images" => [$id]], REST_Controller::HTTP_OK);
     }
 
     function upload_post($id = NULL) {
+        $id = intval($id);
+
         if (!isset($_FILES['file'])) {
             $this->throwError(ImagesResponse::ERROR_NO_FILE_SENT);
         }
@@ -39,6 +57,16 @@ class Images extends REST_Controller {
                     true
                 )) {
                 $this->throwError(ImagesResponse::ERROR_INVALID_FILE_FORMAT);
+            }
+
+            $path = $this->getPathForUser($id);
+            $file_name = sprintf('%s%s.%s',
+                $path,
+                sha1_file($file['tmp_name']),
+                $ext
+            );
+            if (!move_uploaded_file($file['tmp_name'], $file_name)) {
+                $this->throwError(ImagesResponse::ERROR_FAILED_TO_UPLOAD);
             }
 
             $this->success(ImagesResponse::SUCCESS_IMAGE_UPLOADED);
