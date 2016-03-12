@@ -17,12 +17,11 @@ class Images extends REST_Controller {
     }
 
     function upload_post($id = NULL) {
-        $file = $_FILES['file'];
-
-        if (!isset($file)) {
+        if (!isset($_FILES['file'])) {
             $this->throwError(ImagesResponse::ERROR_NO_FILE_SENT);
         }
 
+        $file = $_FILES['file'];
         if ($file['error'] == UPLOAD_ERR_OK) {
 
             if ($file['size'] > 1000000) {
