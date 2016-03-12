@@ -8,7 +8,7 @@ class Images extends REST_Controller {
         $this->response(["images" => [$id]], REST_Controller::HTTP_OK);
     }
 
-    function upload_get($id = NULL) {
+    function upload_post($id = NULL) {
         $this->response(["images" => [$id]], REST_Controller::HTTP_OK);
     }
 
