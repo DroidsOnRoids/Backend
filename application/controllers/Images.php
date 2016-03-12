@@ -41,6 +41,7 @@ class Images extends REST_Controller {
             $user_path = $this->getPathForUser($id);
             $files_unfiltered[] = ["path" => $user_path, "files" => scandir($user_path)];
         }
+        print_r($files_unfiltered);
         foreach ($files_unfiltered as $path => $file) {
             if (is_file($file)) {
                 $files[] = $path.'/'.$file;
