@@ -33,10 +33,21 @@ class Images extends REST_Controller {
     }
 
     function get_get($id = NULL) {
-        $files_all = scandir($this->getPathForUser());
-        print_r($files_all);
+        $files = [];
+        $files_unfiltered = [];
+        $all_path = $this->getPathForUser();
+        $files_unfiltered[] = ["path" => $all_path, "files" => scandir($all_path)];
+        if ($id > 0) {
+            $user_path = $this->getPathForUser($id);
+            $files_unfiltered[] = ["path" => $user_path, "files" => scandir($user_path)];
+        }
+        foreach ($files_unfiltered as $path => $file) {
+            if (is_file($file)) {
+                $files[] = $path.'/'.$file;
+            }
+        }
 
-        $this->response(["images" => [$id]], REST_Controller::HTTP_OK);
+        $this->response(["images" => $files], REST_Controller::HTTP_OK);
     }
 
     function upload_post($id = NULL) {
