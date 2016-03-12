@@ -18,11 +18,15 @@ class Images extends REST_Controller {
 
     function upload_post($id = NULL) {
         $file = $_FILES['file'];
+
+        if (!isset($file)) {
+            $this->throwError(ImagesResponse::ERROR_NO_FILE_SENT);
+        }
+
         if ($file['error'] == UPLOAD_ERR_OK) {
 
             if ($file['size'] > 1000000) {
                 $this->throwError(ImagesResponse::ERROR_FILESIZE_LIMIT_EXCEEDED);
-                die();
             }
 
             $file_info = new finfo(FILEINFO_MIME_TYPE);
@@ -59,9 +63,11 @@ class Images extends REST_Controller {
 
     private function success($success) {
         $this->response(["Success" => $success], REST_Controller::HTTP_OK);
+        die();
     }
 
     private function throwError($error) {
         $this->response(["error" => $error], REST_Controller::HTTP_BAD_REQUEST);
+        die();
     }
 }
