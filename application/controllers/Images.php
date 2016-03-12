@@ -9,7 +9,7 @@ class Images extends REST_Controller {
     }
 
     function upload_post($id = NULL) {
-        $this->response(["images" => [$this->post()]], REST_Controller::HTTP_OK);
+        $this->response(["images" => [$_POST]], REST_Controller::HTTP_OK);
     }
 
 }
