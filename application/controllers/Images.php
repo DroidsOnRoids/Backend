@@ -105,7 +105,7 @@ class Images extends REST_Controller {
             $file_name = sprintf('%s%s_%s_%s.%s',
                 $path,
                 $from_userId,
-                date('Y_m_d'),
+                date('Y.m.d'),
                 sha1_file($file['tmp_name']),
                 $ext
             );
