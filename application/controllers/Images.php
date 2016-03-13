@@ -56,11 +56,13 @@ class Images extends REST_Controller {
             $path = $files_array['path'];
             foreach ($files_array['files'] as $file) {
                 $file_info = explode("_", $file);
+                $file_name = $file;
                 $file = $path.$file;
                 if (is_file($file)) {
                     $to = ($path == $all_path)? 0 : $id;
                     $files[] = [
                         "url" => base_url().substr($file, 2),
+                        "file_name" => $file_name,
                         "from_userId" => $file_info[0],
                         "to" => $to,
                         "date" => str_replace(".", "-", $file_info[1]).' '.str_replace(".", ":", $file_info[2])
