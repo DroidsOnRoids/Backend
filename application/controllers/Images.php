@@ -97,7 +97,7 @@ class Images extends REST_Controller {
             }
 
             $path = $this->getPathForUser($to_userId);
-            $file_name = sprintf('%s_%s_%s%s.%s',
+            $file_name = sprintf('%s%s_%s_%s.%s',
                 $from_userId,
                 date('Y_m_d'),
                 $path,
