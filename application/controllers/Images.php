@@ -8,6 +8,7 @@ class ImagesResponse {
     const ERROR_INVALID_FILE_FORMAT = "Invalid file format.";
     const ERROR_UNKNOWN = "Unknown error.";
     const ERROR_FAILED_TO_UPLOAD = "Failed to move uploaded file.";
+    const ERROR_NO_FROM_USER_ID_SPECIFIED = "You didn't specify parameter from_userId.";
     const SUCCESS_IMAGE_UPLOADED = "Image uploaded correctly.";
 }
 
@@ -33,14 +34,22 @@ class Images extends REST_Controller {
     }
 
     function get_get($id = NULL) {
-        $files = [];
-        $files_unfiltered = [];
+        // Filtering user data
+        $id = intval($id);
+
+        // Prepare arrays
+        $files = []; // arrays with filtered files
+        $files_unfiltered = []; // arrays with unfiltered files (e.g. might be dirs)
+
+        // Fill the array with paths and files in path
         $all_path = $this->getPathForUser();
         $files_unfiltered[] = ["path" => $all_path, "files" => scandir($all_path)];
         if ($id > 0) {
             $user_path = $this->getPathForUser($id);
             $files_unfiltered[] = ["path" => $user_path, "files" => scandir($user_path)];
         }
+
+        // Filter array, get only files and now with url instead of path
         foreach ($files_unfiltered as $files_array) {
             $path = $files_array['path'];
             foreach ($files_array['files'] as $file) {
@@ -54,8 +63,14 @@ class Images extends REST_Controller {
         $this->response(["images" => $files], REST_Controller::HTTP_OK);
     }
 
-    function upload_post($id = NULL) {
-        $id = intval($id);
+    function upload_post() {
+        // Filtering user data
+        $to_userId = intval($this->post('to_userId')); // To which user the image was sent
+        $from_userId = intval($this->post('from_userId')); // From which user the image was sent
+
+        if ($from_userId <= 0) {
+            $this->throwError(ImagesResponse::ERROR_NO_FROM_USER_ID_SPECIFIED);
+        }
 
         if (!isset($_FILES['file'])) {
             $this->throwError(ImagesResponse::ERROR_NO_FILE_SENT);
@@ -81,8 +96,10 @@ class Images extends REST_Controller {
                 $this->throwError(ImagesResponse::ERROR_INVALID_FILE_FORMAT);
             }
 
-            $path = $this->getPathForUser($id);
-            $file_name = sprintf('%s%s.%s',
+            $path = $this->getPathForUser($to_userId);
+            $file_name = sprintf('%s_%s_%s%s.%s',
+                $from_userId,
+                date('Y_m_d'),
                 $path,
                 sha1_file($file['tmp_name']),
                 $ext
