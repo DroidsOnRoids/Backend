@@ -9,7 +9,9 @@ class ImagesResponse {
     const ERROR_UNKNOWN = "Unknown error.";
     const ERROR_FAILED_TO_UPLOAD = "Failed to move uploaded file.";
     const ERROR_NO_FROM_USER_ID_SPECIFIED = "You didn't specify parameter from_userId.";
+    const ERROR_NO_FILE_WITH_GIVEN_NAME_FOR_USER = "There is no file with given name for given user.";
     const SUCCESS_IMAGE_UPLOADED = "Image uploaded correctly.";
+    const SUCCESS_IMAGE_REMOVED = "Image removed correctly";
 }
 
 class Images extends REST_Controller {
@@ -68,6 +70,19 @@ class Images extends REST_Controller {
         }
 
         $this->response(["images" => $files], REST_Controller::HTTP_OK);
+    }
+
+    function remove_post() {
+        $file_to_remove = $this->post('file_name');
+        $to_userId = intval($this->post('to_userId'));
+        $path = $this->getPathForUser($to_userId);
+        $file_to_remove = $path.$file_to_remove;
+        if (is_file($file_to_remove)) {
+            unlink($file_to_remove);
+            $this->success(ImagesResponse::SUCCESS_IMAGE_REMOVED);
+        } else {
+            $this->throwError(ImagesResponse::ERROR_NO_FILE_WITH_GIVEN_NAME_FOR_USER);
+        }
     }
 
     function upload_post() {
