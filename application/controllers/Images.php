@@ -59,7 +59,7 @@ class Images extends REST_Controller {
                     $files[] = [
                         "url" => base_url().substr($file, 2),
                         "from_userId" => $file_info[0],
-                        "date" => $file_info[1]
+                        "date" => str_replace(".", "-", $file_info[1]).' '.str_replace(".", ":", $file_info[2])
                     ];
                 }
             }
