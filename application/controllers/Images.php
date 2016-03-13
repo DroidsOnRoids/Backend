@@ -106,7 +106,7 @@ class Images extends REST_Controller {
                 $path,
                 $from_userId,
                 date('Y.m.d'),
-                sha1_file($file['tmp_name']),
+                sha1_file($file['tmp_name'].date('H:i:s')),
                 $ext
             );
             if (!move_uploaded_file($file['tmp_name'], $file_name)) {
