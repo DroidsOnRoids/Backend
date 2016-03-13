@@ -53,9 +53,14 @@ class Images extends REST_Controller {
         foreach ($files_unfiltered as $files_array) {
             $path = $files_array['path'];
             foreach ($files_array['files'] as $file) {
+                $file_info = explode("_", $file);
                 $file = $path.$file;
                 if (is_file($file)) {
-                    $files[] = base_url().substr($file, 2);
+                    $files[] = [
+                        "url" => base_url().substr($file, 2),
+                        "from_userId" => $file_info[0],
+                        "date" => $file_info[1]
+                    ];
                 }
             }
         }
