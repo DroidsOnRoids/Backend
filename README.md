@@ -53,7 +53,7 @@ Przykłady URL:<br />
 https://serene-escarpment-58247.herokuapp.com/get // images that were sent to all users
 https://serene-escarpment-58247.herokuapp.com/get/11 // images for user with id 11
 ```
-<br />
+
 ### Odpowiedź
 
 W odpowiedzi znajduje się tablica o nazwie `images`, która trzyma wszystkie obrazki dla wykonanego requestu. Jeden obrazek jest obiektem, który posiada:<br />
