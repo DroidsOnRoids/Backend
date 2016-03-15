@@ -52,7 +52,7 @@ https://serene-escarpment-58247.herokuapp.com/get // images that were sent to al
 https://serene-escarpment-58247.herokuapp.com/get/11 // images for user with id 11
 ```
 <br />
-###Odpowiedź:
+### Odpowiedź
 
 W odpowiedzi znajduje się tablica o nazwie `images`, która trzyma wszystkie obrazki dla wykonanego requestu. Jeden obrazek jest obiektem, który posiada:
 `url` - Jest to pełny URL do obrazka
@@ -76,3 +76,30 @@ Przykład odpowiedzi:
 }
 ```
 <br />
+
+# Remove image
+Tutaj możemy usunąć obrazek na podstawie nazwy obrazka oraz użytkownika, do którego dany obrazek został wysłany.
+
+### Zapytanie
+
+Typ: **POST**
+URL: `https://serene-escarpment-58247.herokuapp.com/remove`
+Parametry:
+`file_name` - **(Obowiązkowy)** Obowiązkowy parametr
+`to_userId` - _(Opcjonalny)_ Jeżeli podamy tu ID większe od 0, to oznacza to, że chcemy usunąć obrazek dla danego użytkownika (o ID `to_userId` o danej nazwie (`file_name`).
+<br />
+### Odpowiedź
+
+W zależności od tego czy upload się udał, wystąpi albo success, albo error. Odpowiedź success:
+```
+{
+  "Success": "Image removed correctly"
+}
+```
+
+Odpowiedź error (przykładowa, kiedy nie znajdzie nam takiego obrazka dla podanych parametrów):
+```
+{
+  "error": "There is no file with given name for given user."
+}
+```
