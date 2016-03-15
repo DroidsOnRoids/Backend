@@ -59,6 +59,7 @@ W odpowiedzi znajduje się tablica o nazwie `images`, która trzyma wszystkie ob
 `file_name` - Nazwa pliku, która jest potrzebna do wywołania zapytania usunięcia obrazka.
 `from_userId` - ID użytkownika, który wysłał ten obrazek
 `to` - Tutaj w zależności od tego, czy obrazek został wysłany do konkretnego użytkownika czy do wszystkich, będzie albo ID użytkownika, albo 0, które oznacza, że zdjęcie zostało wysłane do wszystkich.
+`date` - Data kiedy obrazek został przesłany (a w zasadzie zapisany na serwerze).
 
 Przykład odpowiedzi:
 ```
