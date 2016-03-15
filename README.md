@@ -9,10 +9,10 @@ https://serene-escarpment-58247.herokuapp.com
 <br />
 
 # Upload image
-Tutaj uploadujemy obrazek na serwer. Jeśli podamy parametr `to_userId` to wyślemy obrazek tylko do konrketnego użytkownika. Jeśli nie podamy, obrazek otrzymają wszyscy.
+Tutaj uploadujemy obrazek na serwer. Jeśli podamy parametr `to_userId` to wyślemy obrazek tylko do konkretnego użytkownika. Jeśli nie podamy to obrazek otrzymają wszyscy.
 
 ### Zapytanie
-<br />
+
 Typ: **POST**<br />
 URL: `https://serene-escarpment-58247.herokuapp.com/upload`<br />
 Parametry (w ciele zapytania):<br />
@@ -21,7 +21,7 @@ Parametry (w ciele zapytania):<br />
 `to_userId` - _(Opcjonalny)_ ID użytkownika, do którego wysyłamy zdjęcie.<br />
 <br />
 ### Odpowiedź
-<br />
+
 W zależności od tego czy upload się udał, wystąpi albo success, albo error. Odpowiedź success:<br />
 ```
 {
@@ -43,12 +43,12 @@ Dostajemy listę obrazków wrzuconych dla danego użytkownika. Jeśli nie podamy
 
 ### Zapytanie
 
-Typ: **GET**
-URL: `https://serene-escarpment-58247.herokuapp.com/get/{to_userId}`
-Parametry:
+Typ: **GET**<br />
+URL: `https://serene-escarpment-58247.herokuapp.com/get/{to_userId}`<br />
+Parametry:<br />
 `to_userId` - _(Opcjonalny)_ To jedyny parametr, który znajduje się w URL a nie w ciele zapytania. Należy go dołączyć jak w przykładzie na dole.
-
-Przykłady URL:
+<br />
+Przykłady URL:<br />
 ```
 https://serene-escarpment-58247.herokuapp.com/get // images that were sent to all users
 https://serene-escarpment-58247.herokuapp.com/get/11 // images for user with id 11
@@ -56,14 +56,14 @@ https://serene-escarpment-58247.herokuapp.com/get/11 // images for user with id 
 <br />
 ### Odpowiedź
 
-W odpowiedzi znajduje się tablica o nazwie `images`, która trzyma wszystkie obrazki dla wykonanego requestu. Jeden obrazek jest obiektem, który posiada:
-`url` - Jest to pełny URL do obrazka
-`file_name` - Nazwa pliku, która jest potrzebna do wywołania zapytania usunięcia obrazka.
-`from_userId` - ID użytkownika, który wysłał ten obrazek
-`to` - Tutaj w zależności od tego, czy obrazek został wysłany do konkretnego użytkownika czy do wszystkich, będzie albo ID użytkownika, albo 0, które oznacza, że zdjęcie zostało wysłane do wszystkich.
-`date` - Data kiedy obrazek został przesłany (a w zasadzie zapisany na serwerze).
+W odpowiedzi znajduje się tablica o nazwie `images`, która trzyma wszystkie obrazki dla wykonanego requestu. Jeden obrazek jest obiektem, który posiada:<br />
+`url` - Jest to pełny URL do obrazka<br />
+`file_name` - Nazwa pliku, która jest potrzebna do wywołania zapytania usunięcia obrazka.<br />
+`from_userId` - ID użytkownika, który wysłał ten obrazek<br />
+`to` - Tutaj w zależności od tego, czy obrazek został wysłany do konkretnego użytkownika czy do wszystkich, będzie albo ID użytkownika, albo 0, które oznacza, że zdjęcie zostało wysłane do wszystkich.<br />
+`date` - Data kiedy obrazek został przesłany (a w zasadzie zapisany na serwerze).<br />
 
-Przykład odpowiedzi:
+Przykład odpowiedzi:<br />
 ```
 {
   "images": [
