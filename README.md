@@ -47,7 +47,7 @@ Typ: **GET**<br />
 URL: `https://serene-escarpment-58247.herokuapp.com/get/{to_userId}`<br />
 Parametry:<br />
 `to_userId` - _(Opcjonalny)_ To jedyny parametr, który znajduje się w URL a nie w ciele zapytania. Należy go dołączyć jak w przykładzie na dole.
-<br />
+<br /><br />
 Przykłady URL:<br />
 ```
 https://serene-escarpment-58247.herokuapp.com/get // images that were sent to all users
@@ -84,10 +84,10 @@ Tutaj możemy usunąć obrazek na podstawie nazwy obrazka oraz użytkownika, do 
 
 ### Zapytanie
 
-Typ: **POST**
-URL: `https://serene-escarpment-58247.herokuapp.com/remove`
-Parametry:
-`file_name` - **(Obowiązkowy)** Obowiązkowy parametr
+Typ: **POST**<br />
+URL: `https://serene-escarpment-58247.herokuapp.com/remove`<br />
+Parametry:<br />
+`file_name` - **(Obowiązkowy)** Obowiązkowy parametr<br />
 `to_userId` - _(Opcjonalny)_ Jeżeli podamy tu ID większe od 0, to oznacza to, że chcemy usunąć obrazek dla danego użytkownika (o ID `to_userId` o danej nazwie (`file_name`).
 <br />
 ### Odpowiedź
