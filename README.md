@@ -12,22 +12,24 @@ https://serene-escarpment-58247.herokuapp.com
 Tutaj uploadujemy obrazek na serwer. Jeśli podamy parametr `to_userId` to wyślemy obrazek tylko do konrketnego użytkownika. Jeśli nie podamy, obrazek otrzymają wszyscy.
 
 ### Zapytanie
-Typ: **POST**
-URL: `https://serene-escarpment-58247.herokuapp.com/upload`
-Parametry (w ciele zapytania):
-`file` - **(Obowiązkowy)** Obrazek, który wrzucamy.
-`from_userId` - **(Obowiązkowy)** ID użytkownika, który wysłał dany obrazek
-`to_userId` - _(Opcjonalny)_ ID użytkownika, do którego wysyłamy zdjęcie.
+<br />
+Typ: **POST**<br />
+URL: `https://serene-escarpment-58247.herokuapp.com/upload`<br />
+Parametry (w ciele zapytania):<br />
+`file` - **(Obowiązkowy)** Obrazek, który wrzucamy.<br />
+`from_userId` - **(Obowiązkowy)** ID użytkownika, który wysłał dany obrazek<br />
+`to_userId` - _(Opcjonalny)_ ID użytkownika, do którego wysyłamy zdjęcie.<br />
 <br />
 ### Odpowiedź
-W zależności od tego czy upload się udał, wystąpi albo success, albo error. Odpowiedź success:
+<br />
+W zależności od tego czy upload się udał, wystąpi albo success, albo error. Odpowiedź success:<br />
 ```
 {
   "Success": "Image uploaded correctly."
 }
 ```
-
-Odpowiedź error (przykładowa, kiedy nie podamy parametru `from_userId`:
+<br />
+Odpowiedź error (przykładowa, kiedy nie podamy parametru `from_userId`:<br />
 ```
 {
   "error": "You didn't specify parameter from_userId."
