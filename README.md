@@ -3,7 +3,7 @@ To bardzo proste API zawiera 3 podstawowe funkcje: upload image, get images i re
 # Podstawowe informacje
 URL:
 ```
-https://serene-escarpment-58247.herokuapp.com
+https://snappyapp.herokuapp.com
 ```
 
 <br />
@@ -14,7 +14,7 @@ Tutaj uploadujemy obrazek na serwer. Jeśli podamy parametr `to_userId` to wyśl
 ### Zapytanie
 
 Typ: **POST**<br />
-URL: `https://serene-escarpment-58247.herokuapp.com/images/upload`<br />
+URL: `https://snappyapp.herokuapp.com/images/upload`<br />
 Parametry (w ciele zapytania):<br />
 `file` - **(Obowiązkowy)** Obrazek, który wrzucamy.<br />
 `from_userId` - **(Obowiązkowy)** ID użytkownika, który wysłał dany obrazek<br />
@@ -44,14 +44,14 @@ Dostajemy listę obrazków wrzuconych dla danego użytkownika. Jeśli nie podamy
 ### Zapytanie
 
 Typ: **GET**<br />
-URL: `https://serene-escarpment-58247.herokuapp.com/images/get/{to_userId}`<br />
+URL: `https://snappyapp.herokuapp.com/images/get/{to_userId}`<br />
 Parametry:<br />
 `to_userId` - _(Opcjonalny)_ To jedyny parametr, który znajduje się w URL a nie w ciele zapytania. Należy go dołączyć jak w przykładzie na dole.
 <br /><br />
 Przykłady URL:<br />
 ```
-https://serene-escarpment-58247.herokuapp.com/images/get // images that were sent to all users
-https://serene-escarpment-58247.herokuapp.com/images/get/11 // images for user with id 11
+https://snappyapp.herokuapp.com/images/get // images that were sent to all users
+https://snappyapp.herokuapp.com/images/get/11 // images for user with id 11
 ```
 
 ### Odpowiedź
@@ -68,7 +68,7 @@ Przykład odpowiedzi:<br />
 {
   "images": [
     {
-      "url": "https://serene-escarpment-58247.herokuapp.com/images/all/1_2016.03.15_13.35.43_a5ebcb05b8233c8ada8425689055d29564f47bf6.jpg",
+      "url": "https://snappyapp.herokuapp.com/images/all/1_2016.03.15_13.35.43_a5ebcb05b8233c8ada8425689055d29564f47bf6.jpg",
       "file_name": "1_2016.03.15_13.35.43_a5ebcb05b8233c8ada8425689055d29564f47bf6.jpg",
       "from_userId": "1",
       "to": 0,
@@ -85,7 +85,7 @@ Tutaj możemy usunąć obrazek na podstawie nazwy obrazka oraz użytkownika, do 
 ### Zapytanie
 
 Typ: **POST**<br />
-URL: `https://serene-escarpment-58247.herokuapp.com/images/remove`<br />
+URL: `https://snappyapp.herokuapp.com/images/remove`<br />
 Parametry:<br />
 `file_name` - **(Obowiązkowy)** Obowiązkowy parametr<br />
 `to_userId` - _(Opcjonalny)_ Jeżeli podamy tu ID większe od 0, to oznacza to, że chcemy usunąć obrazek dla danego użytkownika (o ID `to_userId` o danej nazwie (`file_name`).
