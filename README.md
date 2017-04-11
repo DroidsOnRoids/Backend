@@ -44,7 +44,7 @@ Dostajemy listę obrazków wrzuconych dla danego użytkownika. Jeśli nie podamy
 
 ### Zapytanie
 
-Typ: **GET**<
+Typ: **GET**
 
 URL: `https://snappyapp.herokuapp.com/images/get/{to_userId}`
 
