@@ -14,7 +14,7 @@ Tutaj uploadujemy obrazek na serwer. Jeśli podamy parametr `to_userId` to wyśl
 ### Zapytanie
 
 Typ: **POST**<br />
-URL: `https://serene-escarpment-58247.herokuapp.com/upload`<br />
+URL: `https://serene-escarpment-58247.herokuapp.com/images/upload`<br />
 Parametry (w ciele zapytania):<br />
 `file` - **(Obowiązkowy)** Obrazek, który wrzucamy.<br />
 `from_userId` - **(Obowiązkowy)** ID użytkownika, który wysłał dany obrazek<br />
@@ -44,14 +44,14 @@ Dostajemy listę obrazków wrzuconych dla danego użytkownika. Jeśli nie podamy
 ### Zapytanie
 
 Typ: **GET**<br />
-URL: `https://serene-escarpment-58247.herokuapp.com/get/{to_userId}`<br />
+URL: `https://serene-escarpment-58247.herokuapp.com/images/get/{to_userId}`<br />
 Parametry:<br />
 `to_userId` - _(Opcjonalny)_ To jedyny parametr, który znajduje się w URL a nie w ciele zapytania. Należy go dołączyć jak w przykładzie na dole.
 <br /><br />
 Przykłady URL:<br />
 ```
-https://serene-escarpment-58247.herokuapp.com/get // images that were sent to all users
-https://serene-escarpment-58247.herokuapp.com/get/11 // images for user with id 11
+https://serene-escarpment-58247.herokuapp.com/images/get // images that were sent to all users
+https://serene-escarpment-58247.herokuapp.com/images/get/11 // images for user with id 11
 ```
 
 ### Odpowiedź
@@ -85,7 +85,7 @@ Tutaj możemy usunąć obrazek na podstawie nazwy obrazka oraz użytkownika, do 
 ### Zapytanie
 
 Typ: **POST**<br />
-URL: `https://serene-escarpment-58247.herokuapp.com/remove`<br />
+URL: `https://serene-escarpment-58247.herokuapp.com/images/remove`<br />
 Parametry:<br />
 `file_name` - **(Obowiązkowy)** Obowiązkowy parametr<br />
 `to_userId` - _(Opcjonalny)_ Jeżeli podamy tu ID większe od 0, to oznacza to, że chcemy usunąć obrazek dla danego użytkownika (o ID `to_userId` o danej nazwie (`file_name`).
