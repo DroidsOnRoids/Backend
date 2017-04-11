@@ -1,4 +1,6 @@
 <?php
+
+die("hehe");
 /**
  * CodeIgniter
  *
