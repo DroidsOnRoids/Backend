@@ -35,7 +35,7 @@ $config['base_url'] = 'https://snappyapp.herokuapp.com/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
